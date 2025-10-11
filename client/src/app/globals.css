@@ -1,0 +1,75 @@
+body {
+  margin: 3em 0;
+  font-family: sans-serif;
+  background: radial-gradient(circle, rgba(250, 247, 217, 1) 0%, rgba(73, 143, 171, 1) 100%);
+  color:#2b7199;
+  justify-content: center;
+  display: flex;
+}
+
+.container {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  gap: 0.7em;
+  padding: 1em;
+  max-width: 40vw;
+}
+
+.app {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+input, select, #date, .reqs {
+  box-sizing: border-box;
+  width: 20em;
+  color: #31909c;
+  height: 7vh;
+  padding: 0.7rem;
+  margin-bottom: 1em;
+  border-radius: 12px;
+  border: 2px solid #31909c;
+  background-color: #c7e8eb;
+  font-size: 1rem;
+}
+
+.small {
+  background: #c7e8eb;
+  border: 0.5px solid #31909c;
+  border-radius: 1.2em;
+  padding: 0.7em;
+  transition: background-color 0.3s;
+}
+
+.big {
+  background-color: #3482af;
+  color: white;
+  padding: 0.8em 1.5em;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: background-color 0.3s;
+}
+
+.big:hover {
+    background: #2b7199;
+}
+
+.small:hover {
+  background: #a8c1c4;
+}
+
+hr {
+  border: 1px solid #2b7199;
+  width: 80%;
+}
+
+::placeholder {
+  color:#31909c;
+}
