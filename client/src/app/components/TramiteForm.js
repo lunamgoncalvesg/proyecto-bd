@@ -42,9 +42,7 @@ const TramiteForm = ({ user }) => {
       axios.get(`http://localhost:3001/api/tramites/requisitos/${selectedTipo}`)
         .then(res => setRequisitos(res.data))
         .catch(err => console.error(err));
-    } else {
-      setRequisitos([]);
-    }
+    } else setRequisitos([]);
   }, [selectedTipo]);
 
 
@@ -74,7 +72,7 @@ const TramiteForm = ({ user }) => {
 
   const isWeekday = (date) => {
     const day = date.getDay();
-    return day !== 0 && day !== 6;
+    return day != 0 && day != 6;
   };
 
   return (
@@ -91,9 +89,7 @@ const TramiteForm = ({ user }) => {
         >
           <option value="">Sección</option>
           {secciones.map(sec => (
-            <option key={sec.idSec} value={sec.idSec}>
-              {sec.nomSec}
-            </option>
+            <option key={sec.idSec} value={sec.idSec}>{sec.nomSec}</option>
           ))}
         </select>
         <select
@@ -103,9 +99,7 @@ const TramiteForm = ({ user }) => {
         >
           <option value="">Tipo de Tramite</option>
           {tipos.map(tipo => (
-            <option key={tipo.idTipo} value={tipo.idTipo}>
-              {tipo.nomTipo}
-            </option>
+            <option key={tipo.idTipo} value={tipo.idTipo}>{tipo.nomTipo}</option>
           ))}
         </select>
         <select
@@ -115,9 +109,7 @@ const TramiteForm = ({ user }) => {
         >
           <option value="">Oficina</option>
           {oficinas.map(of => (
-            <option key={of.idOf} value={of.idOf}>
-              {of.calleOf} {of.altOf}, {of.locOf}
-            </option>
+            <option key={of.idOf} value={of.idOf}>{of.calleOf} {of.altOf}, {of.locOf}</option>
           ))}
         </select>
         <DatePicker
@@ -140,9 +132,7 @@ const TramiteForm = ({ user }) => {
               placeholder={req.campo}
               name={req.idReq}
               value={respuestas[req.idReq] || ''}
-              onChange={(e) =>
-                setRespuestas({ ...respuestas, [req.idReq]: e.target.value })
-              }
+              onChange={(e) => setRespuestas({ ...respuestas, [req.idReq]: e.target.value })}
             />
           </div>
         ))}
