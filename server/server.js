@@ -11,5 +11,5 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tramites", tramiteRoutes);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Servidor andando en el puerto ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor andando en ${PORT}`));
