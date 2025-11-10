@@ -16,7 +16,7 @@ CREATE TABLE TipoTramites (
   sec INT NOT NULL,
   descTipo VARCHAR(150),
   CONSTRAINT pk_idTipo PRIMARY KEY (idTipo),
-  CONSTRAINT fk_sec FOREIGN KEY (sec) REFERENCES Secciones (idSec)
+  CONSTRAINT fk_sec FOREIGN KEY (sec) REFERENCES Secciones (idSec) ON UPDATE CASCADE
 );
 
 CREATE TABLE Oficinas (
@@ -30,7 +30,7 @@ CREATE TABLE Oficinas (
   piso VARCHAR(2),
   sec2 INT,
   CONSTRAINT pk_idOf PRIMARY KEY (idOf),
-  CONSTRAINT fk_sec2 FOREIGN KEY (sec2) REFERENCES Secciones(idSec)
+  CONSTRAINT fk_sec2 FOREIGN KEY (sec2) REFERENCES Secciones(idSec) ON UPDATE CASCADE
 );
 
 CREATE TABLE Clientes (
@@ -66,7 +66,7 @@ CREATE TABLE Empleados (
   telEmp VARCHAR(12) NOT NULL UNIQUE,
   contEmp VARCHAR(50) NOT NULL,
   CONSTRAINT pk_dniEmp PRIMARY KEY (dniEmp),
-  CONSTRAINT fk_ofi FOREIGN KEY (ofi) REFERENCES Oficinas (idOf)
+  CONSTRAINT fk_ofi FOREIGN KEY (ofi) REFERENCES Oficinas (idOf) ON UPDATE CASCADE
 );
 
 CREATE TABLE Tramites (
@@ -78,10 +78,10 @@ CREATE TABLE Tramites (
   fecha DATE,
   est VARCHAR(50) DEFAULT 'Pendiente',
   CONSTRAINT pk_idTra PRIMARY KEY (idTra),
-  CONSTRAINT fk_ofi2 FOREIGN KEY (ofi2) REFERENCES Oficinas (idOf),
-  CONSTRAINT fk_emp FOREIGN KEY (emp) REFERENCES Empleados (dniEmp),
-  CONSTRAINT fk_cli FOREIGN KEY (cli) REFERENCES Clientes (dniCli),
-  CONSTRAINT fk_tipo FOREIGN KEY (tipo) REFERENCES TipoTramites (idTipo)
+  CONSTRAINT fk_ofi2 FOREIGN KEY (ofi2) REFERENCES Oficinas (idOf) ON UPDATE CASCADE,
+  CONSTRAINT fk_emp FOREIGN KEY (emp) REFERENCES Empleados (dniEmp) ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT fk_cli FOREIGN KEY (cli) REFERENCES Clientes (dniCli) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_tipo FOREIGN KEY (tipo) REFERENCES TipoTramites (idTipo) ON UPDATE CASCADE
 );
 
 CREATE TABLE Requisitos(
@@ -89,7 +89,7 @@ CREATE TABLE Requisitos(
   campo VARCHAR(100) NOT NULL,
   tipo2 INT NOT NULL,
   CONSTRAINT pk_idReq PRIMARY KEY (idReq),
-  CONSTRAINT fk_tipo2 FOREIGN KEY (tipo2) REFERENCES TipoTramites (idTipo)
+  CONSTRAINT fk_tipo2 FOREIGN KEY (tipo2) REFERENCES TipoTramites (idTipo) ON UPDATE CASCADE
 );
 
 CREATE TABLE Respuestas(
@@ -98,6 +98,6 @@ CREATE TABLE Respuestas(
   campo INT NOT NULL,
   resp VARCHAR(250) NOT NULL,
   CONSTRAINT pk_idRes PRIMARY KEY (idRes),
-  CONSTRAINT fk_tra FOREIGN KEY (tra) REFERENCES Tramites (idTra),
-  CONSTRAINT fk_campo FOREIGN KEY (campo) REFERENCES Requisitos (idReq)
+  CONSTRAINT fk_tra FOREIGN KEY (tra) REFERENCES Tramites (idTra) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_campo FOREIGN KEY (campo) REFERENCES Requisitos (idReq) ON UPDATE CASCADE ON DELETE CASCADE
 );
