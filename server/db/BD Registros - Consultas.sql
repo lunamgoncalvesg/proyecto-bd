@@ -319,7 +319,7 @@ RETURNS VARCHAR(20)
 DETERMINISTIC
 BEGIN
     DECLARE edad INT;
-    SET edad = DATEDIFF(CURDATE(), fecNac);
+    SET edad = (DATEDIFF(CURDATE(), fecNac))/365;
     IF edad >= 18 THEN
         RETURN 'Mayor de edad';
     ELSE
@@ -389,7 +389,7 @@ BEGIN
 END $$
 DELIMITER ;
 INSERT INTO Tramites (idTra, cli, emp, tipo, fecha, est, ofi2)
-VALUES (1234, '24735397', '30122901', 2, CURDATE(), 'Pendiente', 1);
+VALUES (1234, '24735397', '20931884', 2, CURDATE(), 'Pendiente', 1);
 SELECT * FROM Tramites WHERE idTra = 1234;
 
 -- Marca el trámite como finalizado cuando se asigna un empleado
